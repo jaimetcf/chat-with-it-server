@@ -295,7 +295,6 @@ server/
 │   ├── firestore_session.py # Firestore session management
 │   ├── path_handling.py     # File path utilities
 │   ├── file_handling.py     # File type detection
-│   ├── image_to_description.py # Image processing
 │   ├── requirements.txt     # Python dependencies
 │   └── venv/               # Virtual environment (local)
 ├── firebase.json           # Firebase project configuration
