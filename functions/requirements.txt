@@ -1,0 +1,8 @@
+asyncio
+firebase-functions~=0.1.0
+firebase-admin
+google-cloud-firestore
+openai-agents==0.2.4
+google-cloud-documentai
+openai
+google-cloud-storage

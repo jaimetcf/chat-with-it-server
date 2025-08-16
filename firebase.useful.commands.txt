@@ -1,0 +1,18 @@
+firebase --help                     -> To read the manual
+firebase login:add <account_email>  -> Adds a new account to available accounts
+firebase login:list                 -> Displays all available accounts
+firebase login:use <account_email>  -> Logs in with the specified account 
+firebase login                      -> Logs in or displays the current account logged in
+firebase projects:list
+firebase functions:list             -> Displays all functions registered in the project
+
+firebase init                       -> Interactively configures the current directory as a Firebase project directory
+
+firebase use <alias or project_id>  -> Sets an active Firebase project for your working directory
+
+firebase emulators:start            -> Starts the emulator to allow testing the cloud functions
+
+firebase deploy --only functions    -> Deploys all functions defined in the main.py file
+
+firebase deploy --only functions:<function_name>    
+                                    -> Deploys the function <function_name> defined in the main.py file
