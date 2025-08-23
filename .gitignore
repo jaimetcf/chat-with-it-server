@@ -178,6 +178,7 @@ config.local.json
 secrets.json
 *.key
 *.pem
+python.service.account.json
 
 # Logs
 *.log
