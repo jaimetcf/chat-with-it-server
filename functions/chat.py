@@ -11,7 +11,12 @@ def run_chat(uid: str, prompt: str, session_id: str, client_message_id: Optional
         print(f"Processing chat for session {session_id} with prompt {prompt}")
 
         # Lazy import to avoid deployment timeout
-        from agents import Agent, Runner, ModelSettings, FileSearchTool
+        from agents import Agent, Runner, ModelSettings, FileSearchTool, set_trace_processors
+        from galileo.handlers.openai_agents import GalileoTracingProcessor
+
+        # Sets all agent events including tool calls, handoffs, guardrails, 
+        # and generations to be sent to Galileo for evaluation and monitoring.
+        set_trace_processors([GalileoTracingProcessor()])
 
         db = admin_firestore.client()
 

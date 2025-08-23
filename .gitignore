@@ -198,3 +198,8 @@ tmp/
 ehthumbs.db
 Thumbs.db
 firebase.useful.commands.txt
+
+# Test files and directories
+test/
+test_*.py
+*_test.py

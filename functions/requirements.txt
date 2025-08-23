@@ -6,3 +6,4 @@ openai-agents==0.2.4
 google-cloud-documentai
 openai
 google-cloud-storage
+galileo

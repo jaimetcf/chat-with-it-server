@@ -17,7 +17,8 @@
         "*.local"
       ],
       "runtime": "python313",
-      "timeoutSeconds": 60
+      "timeoutSeconds": 60,
+      "memory": "256MiB"
     }
   ],
   "storage": {

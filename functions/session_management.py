@@ -150,6 +150,7 @@ def generate_session_name(prompt: str) -> str:
             model_settings=ModelSettings(temperature=0.3),
         )
         
+        prompt = f"Generate a concise, descriptive title (maximum 50 characters) for the following prompt: {prompt}"
         # Run the agent to generate the session name
         result = asyncio.run(Runner.run(agent, prompt))
         session_name = result.final_output or "New Chat"

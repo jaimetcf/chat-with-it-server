@@ -1,5 +1,5 @@
 from firebase_functions import https_fn, storage_fn
-from firebase_functions.options import set_global_options
+from firebase_functions.options import set_global_options, MemoryOption
 from firebase_admin import initialize_app
 from firebase_admin import firestore
 from datetime import datetime
@@ -18,7 +18,7 @@ app = initialize_app()
 
 
 # Session Management Functions
-@https_fn.on_call()
+@https_fn.on_call(memory=MemoryOption.MB_256)
 def create_session(req: https_fn.CallableRequest) -> dict:
     """Cloud function to create a new session."""
     # Verify authentication
@@ -28,7 +28,7 @@ def create_session(req: https_fn.CallableRequest) -> dict:
     uid = req.auth.uid
     return create_user_session(uid)
 
-@https_fn.on_call()
+@https_fn.on_call(memory=MemoryOption.MB_256)
 def list_sessions(req: https_fn.CallableRequest) -> dict:
     """Cloud function to list user sessions."""
     # Verify authentication
@@ -38,7 +38,7 @@ def list_sessions(req: https_fn.CallableRequest) -> dict:
     uid = req.auth.uid
     return list_user_sessions(uid)
 
-@https_fn.on_call()
+@https_fn.on_call(memory=MemoryOption.MB_256)
 def delete_session(req: https_fn.CallableRequest) -> dict:
     """Cloud function to delete a session."""
     # Verify authentication
@@ -54,7 +54,7 @@ def delete_session(req: https_fn.CallableRequest) -> dict:
     return delete_user_session(uid, session_id)
 
 
-@https_fn.on_call()
+@https_fn.on_call(memory=MemoryOption.MB_256)
 def delete_document(req: https_fn.CallableRequest) -> dict:
     """Cloud function to delete a document from OpenAI storage and vector stores."""
     # Verify authentication
@@ -70,7 +70,7 @@ def delete_document(req: https_fn.CallableRequest) -> dict:
     return delete_file_from_openai(uid, file_name)
 
 
-@https_fn.on_call()
+@https_fn.on_call(memory=MemoryOption.GB_1)
 def chat(req: https_fn.CallableRequest) -> any:
     """Process user prompt using OpenAI Agents SDK and return response"""
 
@@ -96,7 +96,7 @@ def chat(req: https_fn.CallableRequest) -> any:
     return run_chat(uid, prompt, session_id, client_message_id)
 
 
-@storage_fn.on_object_finalized(bucket="chat-with-it-e09f2.firebasestorage.app")
+@storage_fn.on_object_finalized(bucket="chat-with-it-e09f2.firebasestorage.app", memory=MemoryOption.GB_2)
 def vectorize_file(event: storage_fn.CloudEvent[storage_fn.StorageObjectData]) -> str:
     """
     Cloud function triggered by file upload to /user-documents folder.
